@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
+using DeviceManagement_WebApp.Repository;
 
 namespace DeviceManagement_WebApp.Controllers
 {
     public class ZonesController : Controller
     {
         private readonly ConnectedOfficeContext _context;
-
+        ZoneRepository zoneRepository = new ZoneRepository();
         public ZonesController(ConnectedOfficeContext context)
         {
             _context = context;
@@ -22,7 +23,8 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Zones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Zone.ToListAsync());
+            var results = zoneRepository.Index();
+            return View(Zone);
         }
 
         // GET: Zones/Details/5
