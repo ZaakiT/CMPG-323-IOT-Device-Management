@@ -23,8 +23,8 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Zones
         public async Task<IActionResult> Index()
         {
-            var results = zoneRepository.Index();
-            return View(Zone);
+            var zone = zoneRepository.Index();
+            return View(zone);
         }
 
         // GET: Zones/Details/5
@@ -35,8 +35,7 @@ namespace DeviceManagement_WebApp.Controllers
                 return NotFound();
             }
 
-            var zone = await _context.Zone
-                .FirstOrDefaultAsync(m => m.ZoneId == id);
+            var zone = zoneRepository.Details(id);
             if (zone == null)
             {
                 return NotFound();

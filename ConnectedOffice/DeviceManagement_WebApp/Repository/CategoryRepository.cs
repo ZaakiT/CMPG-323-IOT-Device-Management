@@ -30,7 +30,5 @@ namespace DeviceManagement_WebApp.Repository
             return (IActionResult)_context.Category.FirstOrDefaultAsync(m => m.CategoryId == id);
         }
 
-
-
     }
 }
